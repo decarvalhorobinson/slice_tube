@@ -21,13 +21,15 @@ const copyToClipboard = str => {
 };
 
 btn.addEventListener('click', function(){
+    currentURL = window.location.href;
+    url = new URL(currentURL);
+    videoId = url.searchParams.get("v");
     if(start == 0){
         start = document.getElementsByTagName('video')[0].currentTime;
         btn.innerHTML = "Get end time";
+        urlRedirect = "https://youtu.be/"+videoId+"?t="+Math.floor(start);
+        copyToClipboard(urlRedirect);
     }else if(end == 0){
-        currentURL = window.location.href;
-        url = new URL(currentURL);
-        videoId = url.searchParams.get("v");
         btn.innerHTML = "Get start time";
         end =  document.getElementsByTagName('video')[0].currentTime;
         if(end - start < 1){
