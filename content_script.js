@@ -30,6 +30,9 @@ btn.addEventListener('click', function(){
         videoId = url.searchParams.get("v");
         btn.innerHTML = "Get start time";
         end =  document.getElementsByTagName('video')[0].currentTime;
+        if(end - start < 1){
+          end = start + 1;
+        }
         urlRedirect = "https://www.youtube.com/embed/"+videoId+"?start="+ Math.floor(start) +"&end=" + Math.floor(end);
         window.open(urlRedirect);
 
